@@ -42,7 +42,7 @@ while [[ -n "$URL" ]]; do
             id=$(jq <<<$JSON -r ".artifacts[$i].id?")
             size=$(( $(jq <<<$JSON -r ".artifacts[$i].size_in_bytes?") ))
             printf "Deleting %s #%d, %d bytes\n" "$name" ${ARTCOUNT[$name]} $size
-            ./delete-artifact.sh $id
+            `dirname "$0"`/delete-artifact.sh $id
         fi
     done
 done
