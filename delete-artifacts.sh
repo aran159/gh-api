@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Customize those three lines with your repository and credentials:
-REPO=https://api.github.com/repos/datua-digital/app-tutores-ue
+REPO=https://api.github.com/repos/$1
 GITHUB_USER=aran159
 
 # Number of most recent versions to keep for each artifact:
@@ -42,7 +42,7 @@ while [[ -n "$URL" ]]; do
             id=$(jq <<<$JSON -r ".artifacts[$i].id?")
             size=$(( $(jq <<<$JSON -r ".artifacts[$i].size_in_bytes?") ))
             printf "Deleting %s #%d, %d bytes\n" "$name" ${ARTCOUNT[$name]} $size
-            `dirname "$0"`/delete-artifact.sh $id
+            `dirname "$0"`/delete-artifact.sh $1 $id
         fi
     done
 done
